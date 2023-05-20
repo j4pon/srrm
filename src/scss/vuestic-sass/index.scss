@@ -8,3 +8,14 @@
 .fill-height {
   height: 100%;
 }
+
+.text-medium{
+  font-weight: 500;
+}
+
+
+.layout{
+  &.fluid{
+    max-width: 72rem;
+  }
+}

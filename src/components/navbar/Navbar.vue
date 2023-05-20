@@ -9,7 +9,7 @@
           @click="isSidebarMinimized = !isSidebarMinimized"
         />
         <router-link to="/">
-          <vuestic-logo class="logo" />
+          <img src="@/assets/faro2.png" height="20"/>
         </router-link>
       </div>
     </template>

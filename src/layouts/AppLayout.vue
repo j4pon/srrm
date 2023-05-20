@@ -14,9 +14,35 @@
         />
       </div>
       <div class="app-layout__page">
+
+        <div class="info-overflow-visible info-full info-h info-background">
+
         <div class="layout fluid va-gutter-5">
+
+          <div>
+            <div class="pb-2">
+              <span class="va-h6 white">
+                Dashboard
+              </span>
+            </div>
+            <div class="pb-2">
+              <span class="va-h4">
+                ¡Hola, Carlos!
+              </span>
+            </div>
+            <div class="pb-4">
+              <span class="va-h6">
+                ¡Estás cada vez más cerca de tus metas!
+              </span>
+              
+            </div>
+          </div>
+
+
           <router-view />
         </div>
+
+      </div>
       </div>
     </div>
     
@@ -84,6 +110,19 @@
   $mobileBreakPointPX: 640px;
   $tabletBreakPointPX: 768px;
 
+  .info-overflow-visible{
+    overflow: visible;
+    color: white;
+  }
+  .info-h{
+    height: 13rem;
+  }
+  .info-full{
+    width: 100%;
+  }
+  .info-background{
+    background: linear-gradient(91deg, rgb(80, 19, 191) -59.96%, rgb(0, 204, 153) 122.1%);
+  }
   .app-layout {
     height: 100vh;
     display: flex;

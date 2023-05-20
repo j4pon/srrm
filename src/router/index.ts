@@ -22,8 +22,13 @@ const routes: Array<RouteRecordRaw> = [
         path: 'dashboard',
         component: () => import('../pages/admin/dashboard/Dashboard.vue'),
       },
+      {
+        name: 'fondos',
+        path: 'fondos',
+        component: () => import('../pages/admin/fondos/Fondos.vue'),
+      },
     ]
-  },
+  },/*
   {
     path:'/contabilidad',
     component: AppLayout,
@@ -46,7 +51,7 @@ const routes: Array<RouteRecordRaw> = [
 
       },
     ]
-  },
+  },*/
   {path: '/auth',
   component: AuthLayoutLogin,
   children: [

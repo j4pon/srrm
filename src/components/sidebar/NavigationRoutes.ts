@@ -19,6 +19,14 @@ export default {
       },
     },
     {
+      name: 'fondos',
+      displayName: 'menu.fondos',
+      meta: {
+        icon: 'vuestic-iconset-statistics',
+      },
+    },
+    /*
+    {
       name: 'contabilidad',
       displayName: 'menu.contabilidad',
       meta: {
@@ -40,7 +48,6 @@ export default {
         },
       ],
     },
-    /*
     {
       name: 'forms',
       displayName: 'menu.forms',

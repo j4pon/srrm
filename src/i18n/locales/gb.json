@@ -341,7 +341,8 @@
     "contabilidad": "Contabilidad",
     "librodiario": "Libro Diario",
     "libromayoranalitico": "Libro Mayor Analitico",
-    "balanceconsolidado": "Balance Consolidado"
+    "balanceconsolidado": "Balance Consolidado",
+    "fondos": "Fondos"
   },
   "messages": {
     "all": "See all messages",
