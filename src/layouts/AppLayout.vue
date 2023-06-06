@@ -1,77 +1,65 @@
 <template>
   <div class="app-layout">
-    <navbar />
     <div class="app-layout__content">
       <div class="app-layout__sidebar-wrapper" :class="{ minimized: isSidebarMinimized }">
-        <div v-if="isFullScreenSidebar" class="d-flex justify-end">
-          <va-button class="px-4 py-4" icon="md_close" preset="plain" color="dark" @click="onCloseSidebarButtonClick" />
-        </div>
-        <sidebar
+        <Sidebar
           :width="sidebarWidth"
           :minimized="isSidebarMinimized"
           :minimized-width="sidebarMinimizedWidth"
-          :animated="!isMobile"
-        />
+          :animated="!isMobile"/>
       </div>
       <div class="app-layout__page">
-
+        
         <div class="info-overflow-visible info-full info-h info-background">
-
-        <div class="layout fluid va-gutter-5">
-
-          <div>
-            <div class="pb-2">
-              <span class="va-h6 white">
-                Dashboard
-              </span>
-            </div>
-            <div class="pb-2">
-              <span class="va-h4">
-                ¡Hola, Carlos!
-              </span>
-            </div>
-            <div class="pb-4">
-              <span class="va-h6">
-                ¡Estás cada vez más cerca de tus metas!
-              </span>
-              
-            </div>
+          <div class="layout fluid va-gutter-5">
+            <Navbar @onchangeMinimized="minimizedChanged" />
+            <Infouser/>
+            <router-view />
           </div>
-
-
-          <router-view />
         </div>
-
-      </div>
       </div>
     </div>
-    
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
   import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
   import { storeToRefs } from 'pinia'
   import { onBeforeRouteUpdate } from 'vue-router'
-
   import { useGlobalStore } from '../stores/global-store'
+  import state from '../stores/login';
 
-  import Navbar from '../components/navbar/Navbar.vue'
   import Sidebar from '../components/sidebar/Sidebar.vue'
+  import Navbar from '../components/navbar/Navbar.vue'
+  import Infouser from '../components/infouser/Infouser.vue'
 
-  const GlobalStore = useGlobalStore()
+  const GlobalStore = useGlobalStore();
+  
+  const { isSidebarMinimized } = storeToRefs(GlobalStore)
+
+  // Guardar el estado del store en localStorage antes de actualizar la página
+  window.addEventListener('beforeunload', () => {
+    localStorage.setItem('store', JSON.stringify(state.user));
+  });
+
+  // Limpiar el almacenamiento antes de que se desmonte el componente
+  onBeforeUnmount(() => {
+    localStorage.removeItem('store');
+  });
 
   const mobileBreakPointPX = 640
   const tabletBreakPointPX = 768
 
+  const checkIsTablet = () => window.innerWidth <= tabletBreakPointPX
+  const checkIsMobile = () => window.innerWidth <= mobileBreakPointPX
+  const isMobile = ref(false)
+  const isTablet = ref(false)
   const sidebarWidth = ref('16rem')
   const sidebarMinimizedWidth = ref(undefined)
 
-  const isMobile = ref(false)
-  const isTablet = ref(false)
-  const { isSidebarMinimized } = storeToRefs(GlobalStore)
-  const checkIsTablet = () => window.innerWidth <= tabletBreakPointPX
-  const checkIsMobile = () => window.innerWidth <= mobileBreakPointPX
+  const minimizedChanged = function(value:boolean){
+    isSidebarMinimized.value = value
+  }
 
   const onResize = () => {
     isSidebarMinimized.value = checkIsTablet()
@@ -81,7 +69,6 @@
     sidebarMinimizedWidth.value = isMobile.value ? '0' : '4.5rem'
     sidebarWidth.value = isTablet.value ? '100%' : '16rem'
   }
-
   onMounted(() => {
     window.addEventListener('resize', onResize)
   })
@@ -99,11 +86,6 @@
 
   onResize()
 
-  const isFullScreenSidebar = computed(() => isTablet.value && !isSidebarMinimized.value)
-
-  const onCloseSidebarButtonClick = () => {
-    isSidebarMinimized.value = true
-  }
 </script>
 
 <style lang="scss">
@@ -115,7 +97,7 @@
     color: white;
   }
   .info-h{
-    height: 13rem;
+    height: 17rem;
   }
   .info-full{
     width: 100%;

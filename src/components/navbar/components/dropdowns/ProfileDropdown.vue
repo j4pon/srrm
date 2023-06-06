@@ -10,7 +10,7 @@
       <va-dropdown-content class="profile-dropdown__content">
         <va-list-item v-for="option in options" :key="option.name" class="pa-2">
           <router-link :to="{ name: option.redirectTo }" class="profile-dropdown__item">
-            {{ t(`user.${option.name}`) }}
+            {{ option.name }}
           </router-link>
         </va-list-item>
       </va-dropdown-content>
@@ -20,10 +20,8 @@
 
 <script setup lang="ts">
   import { ref } from 'vue'
-  import { useI18n } from 'vue-i18n'
   import { useColors } from 'vuestic-ui'
 
-  const { t } = useI18n()
   const { colors } = useColors()
 
   withDefaults(
@@ -33,12 +31,12 @@
     {
       options: () => [
         {
-          name: 'profile',
-          redirectTo: '',
+          name: 'Change Password',
+          redirectTo: 'innerchangepassword',
         },
         {
           name: 'logout',
-          redirectTo: 'login',
+          redirectTo: 'logout',
         },
       ],
     },

@@ -1,20 +1,19 @@
-import { defineStore } from 'pinia'
+import {defineStore} from 'pinia'
 
-export const useGlobalStore = defineStore('global', {
-  state: () => {
-    return {
-      isSidebarMinimized: false,
-      userName: 'Vasili S',
+export const useGlobalStore = defineStore('global',{
+    state: () => {
+        return {
+            isSidebarMinimized: false,
+            userName: 'John Doe'
+        }
+    },
+    actions:{
+        toggleSidebar(){
+            this.isSidebarMinimized !=this.isSidebarMinimized
+        },
+        changeUserName(userName: string){
+            this.userName = userName
+        }
     }
-  },
 
-  actions: {
-    toggleSidebar() {
-      this.isSidebarMinimized = !this.isSidebarMinimized
-    },
-
-    changeUserName(userName: string) {
-      this.userName = userName
-    },
-  },
 })

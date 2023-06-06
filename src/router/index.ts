@@ -1,17 +1,48 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
 
 import AuthLayout from '../layouts/AuthLayout.vue'
-import AuthLayoutLogin from '../layouts/AuthLayoutLogin.vue'
 import AppLayout from '../layouts/AppLayout.vue'
-import Page404Layout from '../layouts/Page404Layout.vue'
 
-import RouteViewComponent from '../layouts/RouterBypass.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/:catchAll(.*)',
-    redirect: { name: 'dashboard' },
+    redirect: { name: 'login' },
   },
+  {path: '/auth',
+  component: AuthLayout,
+  children: [
+    {
+      name: 'login',
+      path: 'login',
+      component: () => import('../pages/auth/login/Login.vue'),
+    },
+    {
+      name: 'recover-password',
+      path: 'recover-password',
+      component: () => import('../pages/auth/recover-password/RecoverPassword.vue'),
+    },
+    {
+      name: 'changepassword',
+      path: 'changepassword',
+      component: () => import('../pages/auth/change-password/ChangePassword.vue'),
+    },
+    {
+      name: 'logout',
+      path: 'logout',
+      beforeEnter: (to, from, next) => {
+        console.log('entro aqui logout')
+        localStorage.removeItem('store');
+        next('/login'); // Redirige al componente de inicio de sesión
+        
+      },
+      component: () => null,
+    },
+    {
+      path: '',
+      redirect: { name: 'login' },
+    },
+  ]},
   {
     name: 'admin',
     path: '/admin',
@@ -20,67 +51,46 @@ const routes: Array<RouteRecordRaw> = [
       {
         name: 'dashboard',
         path: 'dashboard',
+        meta: { requiresAuth: true },// Marcar la ruta como protegida
         component: () => import('../pages/admin/dashboard/Dashboard.vue'),
       },
       {
-        name: 'fondos',
-        path: 'fondos',
-        component: () => import('../pages/admin/fondos/Fondos.vue'),
+        name: 'innerchangepassword',
+        path: 'innerchangepassword',
+        meta: { requiresAuth: true }, // Marcar la ruta como protegida
+        component: () => import('../pages/admin/user/ChangePassword.vue'),
       },
     ]
-  },/*
-  {
-    path:'/contabilidad',
-    component: AppLayout,
-    children: [
-      {
-        name: 'librodiario',
-        path: 'librodiario',
-        component: () => import('../pages/admin/contabilidad/LibroDiario.vue'),
-      },
-      {
-        name: 'libromayoranalitico',
-        path: 'libromayoranalitico',
-        component: () => import('../pages/admin/contabilidad/LibroMayorAnalitico.vue'),
-
-      },
-      {
-        name: 'balanceconsolidado',
-        path: 'balanceconsolidado',
-        component: () => import('../pages/admin/contabilidad/BalanceConsolidado.vue'),
-
-      },
-    ]
-  },*/
-  {path: '/auth',
-  component: AuthLayoutLogin,
-  children: [
-    {
-      name: 'login',
-      path: 'login',
-      component: () => import('../pages/auth/login/Login.vue'),
-    },
-    {
-      name: 'signup',
-      path: 'signup',
-      component: () => import('../pages/auth/signup/Signup.vue'),
-    },
-    {
-      name: 'recover-password',
-      path: 'recover-password',
-      component: () => import('../pages/auth/recover-password/RecoverPassword.vue'),
-    },
-    {
-      path: '',
-      redirect: { name: 'login' },
-    },
-  ]}
+  },
 ]
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  //  mode: process.env.VUE_APP_ROUTER_MODE_HISTORY === 'true' ? 'history' : 'hash',
-  routes,
+  routes
 })
+
+// Intercepta la navegación antes de que se cargue cada ruta
+router.beforeEach((to, from, next) => {
+  const user = getUserFromLocalStorage(); // Obtiene el usuario desde el almacenamiento local
+  console.log(to.meta.requiresAuth)
+  console.log(user)
+  console.log(!user)
+  console.log(to.name )
+  next();
+/*
+    if (to.meta.requiresAuth && !user) {
+      // Si la ruta requiere autenticación y el usuario no está autenticado, redirige al login
+      next({ name: 'login' });
+    } else {
+      // De lo contrario, permite la navegación
+      next();
+    }
+    */
+});
+
+function getUserFromLocalStorage(){
+  //console.log(localStorage.getItem('store'))
+  return localStorage.getItem('store');
+}
 
 export default router
