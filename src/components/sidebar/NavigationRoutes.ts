@@ -18,19 +18,5 @@ export default {
         icon: 'vuestic-iconset-dashboard',
       },
     },
-    {
-      name: 'fondos',
-      displayName: 'Fondos',
-      meta: {
-        icon: 'vuestic-iconset-statistics',
-      },
-    },
-    {
-      name: 'movimientos',
-      displayName: 'Movimientos',
-      meta: {
-        icon: 'vuestic-iconset-files',
-      },
-    },   
   ] as INavigationRoute[],
 }

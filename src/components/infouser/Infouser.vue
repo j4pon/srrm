@@ -39,7 +39,7 @@
         setUser(JSON.parse(storedState));
     }
 
-    const getNameUser = computed(() => state.user.data.nombres);
+    const getNameUser = computed(() => state.user.name);
 
     const { isSidebarMinimized, userName } = storeToRefs(GlobalStore)
 

@@ -3,7 +3,7 @@
       <va-input
         v-model="user"
         class="mb-3"
-        type="text"
+        type="email"
         label="Email"
         :error="!!emailErrors.length"
         :error-messages="emailErrors"
@@ -54,11 +54,10 @@
       if (!formReady.value) return
 
       const access = await login(user.value, password.value);
-
+      console.log(access)
       //emailErrors.value = email.value ? [] : ['Email is required']
       //passwordErrors.value = password.value ? [] : ['Password is required']
-      if(access.status){
-        console.log("aquiiiiiiiiiii")
+      if(access.success){
         setUser(access);
         router.push({ name: 'dashboard' })
       }
