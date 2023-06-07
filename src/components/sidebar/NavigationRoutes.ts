@@ -18,5 +18,45 @@ export default {
         icon: 'vuestic-iconset-dashboard',
       },
     },
+    {
+      name: 'inventario',
+      displayName: 'Inventario',
+      meta: {
+        icon: 'material-icons-store',
+      },
+      children:[
+        {
+          name: 'proveedor',
+          displayName: 'Proveedores',
+          meta: {
+            icon: 'vuestic-iconset-dashboard',
+          },  
+        },      
+      ]
+    },
+    {
+      name: 'usuarios',
+      displayName: 'Usuarios',
+      meta: {
+        icon: 'material-icons-manage_accounts',
+      },
+      children:[
+        {
+          name: 'clientes',
+          displayName: 'Clientes',
+          meta: {
+            icon: 'vuestic-iconset-dashboard',
+          },  
+        },
+        {
+          name: 'empleado',
+          displayName: 'Empleado',
+          meta: {
+            icon: 'vuestic-iconset-dashboard',
+          },  
+        }         
+      ]
+    },
+
   ] as INavigationRoute[],
 }

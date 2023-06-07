@@ -7,6 +7,8 @@ import App from './App.vue'
 import router from './router'
 import vuesticGlobalConfig from './services/vuestic-ui/global-config'
 
+import '@vuestic/ag-grid-theme'
+
 const app = createApp(App)
 
 app.use(createPinia())
