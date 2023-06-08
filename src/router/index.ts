@@ -65,7 +65,13 @@ const routes: Array<RouteRecordRaw> = [
         path: 'proveedor',
         meta: { requiresAuth: true },// Marcar la ruta como protegida
         component: () => import('../pages/admin/inventario/proveedores/Proveedor.vue'),
-      },  
+      },
+      {
+        name: 'producto',
+        path: 'producto',
+        meta: { requiresAuth: true },// Marcar la ruta como protegida
+        component: () => import('../pages/admin/inventario/producto/Producto.vue'),
+      }, 
       {
         name: 'empleado',
         path: 'empleado',
