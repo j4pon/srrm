@@ -1,12 +1,24 @@
 <template>
     <div style="height: 300px; width: 100%;">
-        <grilla />
+        <grilla-data :items="items" :columns="columns" :editRow="editRow" :deleteRow="deleteRow"/>
     </div>
   </template>
   
   <script setup lang="ts">
   import { ref, onBeforeMount } from 'vue';
-  import grilla from '@/components/grid/grilla.vue'
+  import grillaData from '@/components/grid/grilla.data.vue'
+
+  const props = withDefaults(defineProps<{
+    items?:Array<object>,
+    columns?: Array<object>,
+    editRow?:Function,
+    deleteRow:Function,
+    closeRow:Function
+  }>(),{
+    items:[],
+    columns:[]
+  });
+ 
   </script>
   
   

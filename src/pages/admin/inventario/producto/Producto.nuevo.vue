@@ -107,6 +107,11 @@
 
     import popup from "@/components/popup/Popup.vue";
 
+    const props = withDefaults(defineProps<{
+        closeRow:Function
+    }>(),{
+    });
+
     const { isValid, validate, reset, resetValidation } = useForm('formRef')
 
     const modalTipo = ref("")
