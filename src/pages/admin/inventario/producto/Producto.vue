@@ -13,7 +13,8 @@
         <div class="flex flex-col" style="width: 100%;">
   
           <div class="md12 pl-4 pr-4 pb-4">
-            <component :is="currentTab.component" :items="items" :columns="columns" :editRow="editRow" :deleteRow="deleteRow" :closeRow="closeRow" />
+            <component v-if="currentTab.co == 'T'" :is="currentTab.component" :items="items" :columns="columns" :editRow="editRow" :deleteRow="deleteRow" :closeRow="closeRow" />
+            <component v-else :is="currentTab.component" :closeRow="closeRow" />
           </div>
             
         </div>
@@ -31,8 +32,8 @@
   
   
   const TABS = [
-    { icon: "feed", title: "Listado Producto", component: Listado },
-    { icon: "feed", title: "Agregar Producto", component: Nuevo },
+    { icon: "feed", title: "Listado Producto", co:"T", component: Listado },
+    { icon: "feed", title: "Agregar Producto", co:"N", component: Nuevo },
   ];
   
   
