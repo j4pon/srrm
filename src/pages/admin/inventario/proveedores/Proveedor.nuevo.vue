@@ -31,21 +31,6 @@
             />               
         </div>
         <div class="flex md6">
-            <div class="row">
-                <div class="flex md2">
-                    <span class="va-title">Genero</span>
-                </div>
-                <div class="md10">
-                    <va-radio
-                    v-for="(option, index) in genero"
-                    :key="index"
-                    v-model="form.genero"
-                    :option="option"
-                />   
-                </div>               
-            </div>
-        </div>
-        <div class="flex md6">
             <va-input
                 v-model="form.phone"
                 type="tel"
