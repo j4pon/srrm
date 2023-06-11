@@ -1,6 +1,16 @@
 <template>
   <div class="dashboard">
 
+
+    <va-button @click="$refs.modal.show()">
+      Show modal (stateful)
+    </va-button>
+    <va-modal
+      ref="modal"
+      stateful
+      :message="popup"
+    />
+
     <div class="row row-equal">
     <div class="flex md12 xs12">
       <VaSkeletonGroup v-if="isLoading" animation="pulse" :delay="0">
@@ -148,6 +158,8 @@
 
   import SkDashboard1 from '../../../components/skeleton/sk.dashboard1.vue'
   import SkDashboard2 from '../../../components/skeleton/sk.dashboard2.vue'
+  import popup from "@/components/popup/Popup.vue";
+
   import {
     Chart as ChartJS,
     Title,

@@ -42,7 +42,7 @@
               <tbody>
                 <tr>
                   <td>
-                    <div style="max-width: 150px;">
+                    <div style="max-width: 200px;">
                       <va-select
                       v-model="form.categoria"
                       :options="fabricanteOptions"
@@ -52,7 +52,7 @@
 
                   </td>
                   <td>
-                    <div style="max-width: 150px;">
+                    <div style="max-width: 200px;">
                       <va-select
                       v-model="form.fabricante"
                       :options="fabricanteOptions"
@@ -61,7 +61,7 @@
                     </div>
                   </td>
                   <td>
-                    <div style="max-width: 150px;">
+                    <div style="max-width: 200px;">
                       <va-select
                       v-model="form.fabricante"
                       :options="fabricanteOptions"
@@ -70,13 +70,13 @@
                     </div>
                   </td>
                   <td>
-                    <div style="max-width: 50px;">
+                    <div style="max-width: 100px;">
                       <va-input v-model="form.cantidad" label="" mask="numeral"/>
                     </div>
                     
                   </td>
                   <td>
-                    <div style="max-width: 70px;">
+                    <div style="max-width: 100px;">
                       <va-input v-model="form.cantidad" label="" mask="numeral"/>
                     </div>
                     
@@ -86,7 +86,7 @@
                       <va-input v-model="form.cantidad" readonly label="" mask="numeral"/>
                     </div>
                   </td>
-                  <td>
+                  <td align="right">
                     <va-button icon="material-icons-close" />
                   </td>
 
