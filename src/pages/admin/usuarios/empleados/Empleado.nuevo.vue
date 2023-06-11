@@ -3,7 +3,7 @@
   <va-form class="flex flex-col gap-6" ref="formRef">
 
     <div class="row row-equeal">
-        <div class="flex md2 xs2 offset-md10 offset-xs10 ">
+        <div class="flex md1 xs1 offset-md11 offset-xs10">
             <va-button :disabled="!isValid" @click="validate() && submit()">
                 Submit
             </va-button>

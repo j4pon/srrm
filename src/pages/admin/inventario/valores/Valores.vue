@@ -26,13 +26,13 @@
   <script setup lang="ts">
   
   import { computed, ref } from "vue";
-  import Listado from "./Producto.listado.vue";
-  import Nuevo from "./Producto.nuevo.vue";
+  import Listado from "./Valores.listado.vue";
+  import Nuevo from "./Valores.nuevo.vue";
   
   
   const TABS = [
-    { icon: "feed", title: "Listado Producto", component: Listado },
-    { icon: "feed", title: "Agregar Producto", component: Nuevo },
+    { icon: "feed", title: "Listado Valores", component: Listado },
+    { icon: "feed", title: "Agregar Valor", component: Nuevo },
   ];
   
   

@@ -31,7 +31,21 @@ export default {
           meta: {
             icon: 'vuestic-iconset-dashboard',
           },  
-        },      
+        },  
+        {
+          name: 'producto',
+          displayName: 'Producto',
+          meta: {
+            icon: 'vuestic-iconset-dashboard',
+          },  
+        },   
+        {
+          name: 'valores',
+          displayName: 'Valores',
+          meta: {
+            icon: 'vuestic-iconset-dashboard',
+          },  
+        },     
       ]
     },
     {

@@ -55,6 +55,18 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('../pages/admin/dashboard/Dashboard.vue'),
       },
       {
+        name: 'producto',
+        path: 'producto',
+        meta: { requiresAuth: true },// Marcar la ruta como protegida
+        component: () => import('../pages/admin/inventario/producto/Producto.vue'),
+      },  
+      {
+        name: 'valores',
+        path: 'valores',
+        meta: { requiresAuth: true },// Marcar la ruta como protegida
+        component: () => import('../pages/admin/inventario/valores/Valores.vue'),
+      },  
+      {
         name: 'clientes',
         path: 'clientes',
         meta: { requiresAuth: true },// Marcar la ruta como protegida
