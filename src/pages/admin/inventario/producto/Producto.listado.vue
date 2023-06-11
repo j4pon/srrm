@@ -1,5 +1,5 @@
 <template>
-    <div style="height: 300px; width: 100%;">
+    <div style="height: 500px; width: 100%;">
         <grilla-data :items="items" :columns="columns" :editRow="editRow" :deleteRow="deleteRow"/>
     </div>
   </template>

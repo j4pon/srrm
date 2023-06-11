@@ -1,8 +1,11 @@
 <template>
-  <div style="height: 300px; width: 100%;">
+  <div style="height: 500px; width: 100%;">
     <va-data-table
     :items="items"
     :columns="columns"
+    virtual-scroller
+    sticky-header
+    striped
   >
 
     <template #cell(action)="{ value }">
