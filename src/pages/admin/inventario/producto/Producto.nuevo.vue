@@ -11,7 +11,7 @@
           <div class="flex md9">
               <va-input
               v-model="form.nombre"
-              :rules="[(value) => (value && value.length > 0) || 'Last name is required']"
+              :rules="[(value) => (value && value.length > 0) || 'Nombre is required']"
               label="Nombre"
               />            
           </div>
@@ -131,7 +131,10 @@
         refmodal.value.show()
     }
   
-    const submit = () => alert('Form submitted!')
+    const submit = () => { 
+        alert('Form submitted!') 
+        props.closeRow()
+    }
   
   </script>
   
