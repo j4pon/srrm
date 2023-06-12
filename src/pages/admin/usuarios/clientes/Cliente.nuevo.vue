@@ -68,45 +68,26 @@
 </template>
 
 <script setup lang="ts">
-import { reactive } from 'vue'
-import { useForm } from 'vuestic-ui'
+  import { reactive } from 'vue'
+  import { useForm } from 'vuestic-ui'
+
+  const props = withDefaults(defineProps<{
+    closeRow:Function
+  }>(),{
+  });
 
   const { isValid, validate, reset, resetValidation } = useForm('formRef')
 
   const form = reactive({
-    nombres: '',
-    apellidos: '',
-    genero: '',
-    telefono: '',
-    direccion:'',
-    vigencia:false
   })
-
-  const countries = [
-    { value: 'ua', text: 'Ukraine' },
-    { value: 'us', text: 'USA' },
-    { value: 'uk', text: 'United Kingdom' },
-  ]
 
   const genero = ["M", "F"]
 
-  const validateBirthday = (value: Date | null) => {
-    if (!value) {
-      return 'Field is required'
-    }
 
-    const today = new Date()
-    let yearDiff = today.getFullYear() - value.getFullYear()
-    const monthDiff = today.getMonth() - value.getMonth()
-
-    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < value.getDate())) {
-      yearDiff--
-    }
-
-    return yearDiff >= 18 || 'You must be at least 18 years old'
+  const submit = () => { 
+    alert('Form submitted!') 
+    props.closeRow()
   }
-
-  const submit = () => alert('Form submitted!')
 
 </script>
 

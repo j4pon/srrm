@@ -112,9 +112,12 @@
   import { reactive, ref } from 'vue'
   import { useForm } from 'vuestic-ui'
 
-
   import popup from "@/components/popup/Popup.vue";
 
+  const props = withDefaults(defineProps<{
+    closeRow:Function
+  }>(),{
+  });
   
     const { isValid, validate, reset, resetValidation } = useForm('formRef')
   
@@ -125,26 +128,11 @@
     const modalFabricante = false;
   
     const fabricanteOptions = ref([])
-  
-    const categoria = ["Vehiculo", "Parte"]
-  
-    const validateBirthday = (value: Date | null) => {
-      if (!value) {
-        return 'Field is required'
-      }
-  
-      const today = new Date()
-      let yearDiff = today.getFullYear() - value.getFullYear()
-      const monthDiff = today.getMonth() - value.getMonth()
-  
-      if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < value.getDate())) {
-        yearDiff--
-      }
-  
-      return yearDiff >= 18 || 'You must be at least 18 years old'
+
+    const submit = () => { 
+      alert('Form submitted!') 
+      props.closeRow()
     }
-  
-    const submit = () => alert('Form submitted!')
   
   </script>
   

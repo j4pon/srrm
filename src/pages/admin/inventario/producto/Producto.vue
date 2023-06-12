@@ -100,8 +100,6 @@
   const closeRow = () => {
     value.value = TABS[0].title;
   }
-
-  
   </script>
   <style>
   .va-tabs__content{
