@@ -46,13 +46,15 @@ export default {
             icon: 'vuestic-iconset-dashboard',
           },  
         }, 
+        /*
         {
           name: 'compras',
           displayName: 'Compras',
           meta: {
             icon: 'vuestic-iconset-dashboard',
           },  
-        },      
+        },  
+        */    
       ]
     },
     {
@@ -89,7 +91,14 @@ export default {
       name: 'cotizacion',
       displayName: 'Cotizacion',
       meta: {
-        icon: 'material-icons-local_taxi',
+        icon: 'material-icons-rate_review',
+      },
+    },
+    {
+      name: 'servicio',
+      displayName: 'Servicio',
+      meta: {
+        icon: 'material-icons-settings',
       },
     },
 

@@ -24,7 +24,7 @@
                 <td>
                     <div style="max-width: 200px;">
                     <va-select
-                    v-model="filas[index].fabricante"
+                    v-model="props.filas[index].fabricante"
                     :options="fabricanteOptions"
                     label="Fabricante"
                     />
@@ -41,19 +41,19 @@
                 </td>
                 <td>
                     <div style="max-width: 100px;">
-                    <va-input v-model="filas[index].cantidad" label="" mask="numeral"/>
+                    <va-input v-model="props.filas[index].cantidad" label="" mask="numeral"/>
                     </div>
                     
                 </td>
                 <td>
                     <div style="max-width: 100px;">
-                    <va-input v-model="filas[index].precio" label="" mask="numeral"/>
+                    <va-input v-model="props.filas[index].precio" label="" mask="numeral"/>
                     </div>
                     
                 </td>
                 <td>
                     <div style="max-width: 100px;">
-                    <va-input v-model="filas[index].monto" readonly label="" mask="numeral"/>
+                    <va-input v-model="props.filas[index].monto" readonly label="" mask="numeral"/>
                     </div>
                 </td>
                 <td style="text-align: right;">
@@ -69,7 +69,11 @@
 
 <script lang="ts" setup>
 
-    import {Producto} from '../../interfaces/Model'
+    import { ref } from 'vue'
+    import Producto from '../../interfaces/Model'
+    
+    const fabricanteOptions = ref([])
+
     const props = withDefaults(
       defineProps<{
         eliminarFila?: Function,
@@ -81,13 +85,13 @@
       },
     )
 
-    const filas = props.filas
+    
     const agregarFila = () => {
-      filas.push(Object.assign({}, props.defaultItem));
+      props.filas.push(Object.assign({}, props.defaultItem));
     };
 
     const eliminarFila = (index: number) => {
-      filas.splice(index, 1);
+      props.filas.splice(index, 1);
     };
 </script>
 

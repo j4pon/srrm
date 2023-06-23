@@ -42,6 +42,27 @@
           </div>
         </div>
 
+        <div class="flex md6">
+          <div class="row">
+              <div class="flex md8">
+                  <va-select
+                  v-model="form.cliente"
+                  :options="fabricanteOptions"
+                  label="Asignar a"
+                  />
+              </div>
+              <div class="flex md4">
+                  <va-button icon="material-icons-add" preset="secondary" border-color="primary"  @click="abrirPopup('Tipo de Vehiculo')">
+                      Añadir o Quitar
+                  </va-button>
+              </div>
+          </div>
+        </div>
+
+        <div class="flex md6">
+            <va-date-input v-model="form.fecha" label="Fecha servicio"/>
+        </div>
+
         <div class="flex md12">
           <div class="row">
               <div class="flex md12">

@@ -101,7 +101,13 @@ const routes: Array<RouteRecordRaw> = [
         path: 'cotizacion',
         meta: { requiresAuth: true },// Marcar la ruta como protegida
         component: () => import('../pages/admin/cotizacion/Cotizacion.vue'),
-      },      
+      },
+      {
+        name: 'servicio',
+        path: 'servicio',
+        meta: { requiresAuth: true },// Marcar la ruta como protegida
+        component: () => import('../pages/admin/servicio/Servicio.vue'),
+      },           
       {
         name: 'innerchangepassword',
         path: 'innerchangepassword',
