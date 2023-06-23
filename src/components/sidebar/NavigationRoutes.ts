@@ -45,7 +45,14 @@ export default {
           meta: {
             icon: 'vuestic-iconset-dashboard',
           },  
-        },     
+        }, 
+        {
+          name: 'compras',
+          displayName: 'Compras',
+          meta: {
+            icon: 'vuestic-iconset-dashboard',
+          },  
+        },      
       ]
     },
     {
@@ -70,6 +77,20 @@ export default {
           },  
         }         
       ]
+    },
+    {
+      name: 'vehiculo',
+      displayName: 'Vehiculo',
+      meta: {
+        icon: 'material-icons-local_taxi',
+      },
+    },
+    {
+      name: 'cotizacion',
+      displayName: 'Cotizacion',
+      meta: {
+        icon: 'material-icons-local_taxi',
+      },
     },
 
   ] as INavigationRoute[],

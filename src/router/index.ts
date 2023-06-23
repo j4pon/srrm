@@ -65,12 +65,24 @@ const routes: Array<RouteRecordRaw> = [
         path: 'valores',
         meta: { requiresAuth: true },// Marcar la ruta como protegida
         component: () => import('../pages/admin/inventario/valores/Valores.vue'),
+      },
+      {
+        name: 'compras',
+        path: 'compras',
+        meta: { requiresAuth: true },// Marcar la ruta como protegida
+        component: () => import('../pages/admin/inventario/compras/Compras.vue'),
+      },  
+      {
+        name: 'vehiculo',
+        path: 'vehiculo',
+        meta: { requiresAuth: true },// Marcar la ruta como protegida
+        component: () => import('../pages/admin/vehiculo/Vehiculo.vue'),
       },  
       {
         name: 'clientes',
         path: 'clientes',
         meta: { requiresAuth: true },// Marcar la ruta como protegida
-        component: () => import('../pages/admin/usuarios/Clientes/Cliente.vue'),
+        component: () => import('../pages/admin/usuarios/clientes/Cliente.vue'),
       },
       {
         name: 'proveedor',
@@ -83,7 +95,13 @@ const routes: Array<RouteRecordRaw> = [
         path: 'empleado',
         meta: { requiresAuth: true },// Marcar la ruta como protegida
         component: () => import('../pages/admin/usuarios/empleados/Empleado.vue'),
-      },     
+      },
+      {
+        name: 'cotizacion',
+        path: 'cotizacion',
+        meta: { requiresAuth: true },// Marcar la ruta como protegida
+        component: () => import('../pages/admin/cotizacion/Cotizacion.vue'),
+      },      
       {
         name: 'innerchangepassword',
         path: 'innerchangepassword',

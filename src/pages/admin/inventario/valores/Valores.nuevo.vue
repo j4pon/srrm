@@ -3,12 +3,14 @@
     <va-form class="flex flex-col gap-6" ref="formRef">
   
       <div class="row row-equeal">
-          <div class="flex md1 xs1 offset-md11 offset-xs10">
+          <div class="flex md12">
+            <div class="row">
+              <va-spacer/>
               <va-button :disabled="!isValid" @click="validate() && submit()">
                   Submit
               </va-button>
+            </div>
           </div>
-          <va-divider/>
 
           <div class="flex md9">
                 <va-select
@@ -25,74 +27,70 @@
           <div class="flex md12">
             <h3>Detalle de la Compra</h3>
             <va-divider/>
-              
 
-            <table class="va-table">
-              <thead>
-                <tr>
-                  <th width="10%">Categoria</th>
-                  <th width="15%">Nombre Fabricante</th>
-                  <th width="15%">Nombre del producto</th>
-                  <th width="5%">Cantidad</th>
-                  <th width="5%">Precio S/</th>
-                  <th width="5%">Cantidad S/</th>
-                  <th width="10%">Accion</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <div style="max-width: 200px;">
-                      <va-select
-                      v-model="form.categoria"
-                      :options="fabricanteOptions"
-                      label="Categoria"
-                      />       
-                    </div>
+            <div class="row">
+              <va-spacer/>
+                <va-button icon="material-icons-add" @click="agregarFila()" />
+            </div>
+            <div class="row">
+              <table class="va-table" width="100%">
+                <thead>
+                  <tr>
+                    <th width="15%">Nombre Fabricante</th>
+                    <th width="15%">Nombre del producto</th>
+                    <th width="5%">Cantidad</th>
+                    <th width="5%">Precio S/</th>
+                    <th width="5%">Cantidad S/</th>
+                    <th width="10%" style="text-align: right;">Accion</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="(fila, index) in filas" :key="index">
+ 
+                    <td>
+                      <div style="max-width: 200px;">
+                        <va-select
+                        v-model="filas[index].fabricante"
+                        :options="fabricanteOptions"
+                        label="Fabricante"
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      <div style="max-width: 200px;">
+                        <va-select
+                        v-model="filas[index].producto"
+                        :options="fabricanteOptions"
+                        label="Producto"
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      <div style="max-width: 100px;">
+                        <va-input v-model="filas[index].cantidad" label="" mask="numeral"/>
+                      </div>
+                      
+                    </td>
+                    <td>
+                      <div style="max-width: 100px;">
+                        <va-input v-model="filas[index].precio" label="" mask="numeral"/>
+                      </div>
+                      
+                    </td>
+                    <td>
+                      <div style="max-width: 100px;">
+                        <va-input v-model="filas[index].monto" readonly label="" mask="numeral"/>
+                      </div>
+                    </td>
+                    <td style="text-align: right;">
+                      <va-button icon="material-icons-close" @click="eliminarFila(index)"/>
+                    </td>
 
-                  </td>
-                  <td>
-                    <div style="max-width: 200px;">
-                      <va-select
-                      v-model="form.fabricante"
-                      :options="fabricanteOptions"
-                      label="Fabricante"
-                      />
-                    </div>
-                  </td>
-                  <td>
-                    <div style="max-width: 200px;">
-                      <va-select
-                      v-model="form.fabricante"
-                      :options="fabricanteOptions"
-                      label="Producto"
-                      />
-                    </div>
-                  </td>
-                  <td>
-                    <div style="max-width: 100px;">
-                      <va-input v-model="form.cantidad" label="" mask="numeral"/>
-                    </div>
-                    
-                  </td>
-                  <td>
-                    <div style="max-width: 100px;">
-                      <va-input v-model="form.cantidad" label="" mask="numeral"/>
-                    </div>
-                    
-                  </td>
-                  <td>
-                    <div style="max-width: 100px;">
-                      <va-input v-model="form.cantidad" readonly label="" mask="numeral"/>
-                    </div>
-                  </td>
-                  <td align="right">
-                    <va-button icon="material-icons-close" />
-                  </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
 
-                </tr>
-              </tbody>
-            </table>
 
           </div>
       </div>
@@ -112,6 +110,8 @@
   import { reactive, ref } from 'vue'
   import { useForm } from 'vuestic-ui'
 
+  import type { Producto } from '../../../../interfaces/Model';
+
   import popup from "@/components/popup/Popup.vue";
 
   const props = withDefaults(defineProps<{
@@ -121,13 +121,23 @@
   
     const { isValid, validate, reset, resetValidation } = useForm('formRef')
   
-    const form = reactive({
-
-    })
+    const form = reactive({})
 
     const modalFabricante = false;
   
     const fabricanteOptions = ref([])
+
+    const defaultItem:Producto = { categoria: '', fabricante: '', producto: '', cantidad: '', precio: '', monto: '' };
+
+    const filas = ref([Object.assign({}, defaultItem)]);
+
+    const agregarFila = () => {
+      filas.value.push(Object.assign({}, defaultItem));
+    };
+
+    const eliminarFila = (index: number) => {
+      filas.value.splice(index, 1);
+    };
 
     const submit = () => { 
       alert('Form submitted!') 

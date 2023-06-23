@@ -1,179 +1,105 @@
 <template>
   <div class="dashboard">
-
-
-    <va-button @click="$refs.modal.show()">
-      Show modal (stateful)
-    </va-button>
-    <va-modal
-      ref="modal"
-      stateful
-      :message="popup"
-    />
-
-    <div class="row row-equal">
-    <div class="flex md12 xs12">
-      <VaSkeletonGroup v-if="isLoading" animation="pulse" :delay="0">
-        <SkDashboard1/>
-      </VaSkeletonGroup>
-      <va-card v-else>
-        <va-card-title>
-          <h6 class="va-h6">Balances</h6>
-        </va-card-title>
-        <va-card-content> 
-          <div class="row row-equal">
-            <div class="flex md6 xs6">
-              <va-card
-                color="backgroundPrimary"
-              >
-                <va-card-content>
-                  <div class="row">
-                    <div class="flex md2 xs3">
-                      <va-icon name="account_balance" size="3rem"/>
-                    </div>
-                    <div class="flex md10 xs9">
-                      <div>
-                        <span class="va-h5 text-medium">
-                          Balance de fondos en dólares
-                        </span>
-                      </div>
-                      <div>
-                        <span class="va-h3">
-                          $100.42
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </va-card-content>
-              </va-card>              
-            </div>
-            <div class="flex md6 xs6">
-              <va-card
-                color="backgroundPrimary"
-              >
-              <va-card-content>
-                  <div class="row">
-                    <div class="flex md2 xs3">
-                      <va-icon name="account_balance" size="3rem"/>
-                    </div>
-                    <div class="flex md10 xs9">
-                      <div>
-                        <span class="va-h5 text-medium">
-                          Balance de fondos en soles
-                        </span>
-                      </div>
-                      <div>
-                        <span class="va-h3">
-                          S/ 0.00
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </va-card-content>
-              </va-card>              
-            </div>
-          </div>
-
-        </va-card-content>
-
-      </va-card>
-    </div>
-    </div>
-
-    <div class="row row-equal">
-      <div class="flex md6 xs12">
-
-        <VaSkeletonGroup v-if="isLoading" animation="pulse" :delay="0">
-          <SkDashboard2/>
-        </VaSkeletonGroup>
-
-        <va-card v-else>
-          <va-card-title>
-            <span class="va-h6">
-              Faro Capital Corto Plazo Dolares FMIV
-            </span>
-          </va-card-title>
-          <va-card-container>
-            <Line
-              class="pa-3"
-              id="my-chart-id"
-              :options="chartOptions"
-              :data="chartData"
+    
+    <div class="row">
+      <!--
+      <div class="flex md12">
+        <va-card class="pt-3" stripe stripe-color="success">
+          <va-card-content >
+            <va-stepper
+              v-model="step"
+              :steps="steps"
+              controlsHidden
             />
-          </va-card-container>
+          </va-card-content >
         </va-card>
       </div>
-      
-      <div class="flex md6 xs12">
-        <VaSkeletonGroup v-if="isLoading" animation="pulse" :delay="0">
-          <SkDashboard2/>
-        </VaSkeletonGroup>
-
-        <va-card v-else>
+      -->
+      <div class="row flex justify-space-between">
+        <div class="flex flex-col va-text-center">
+          <va-card color="primary">
+            <va-icon name="construction" class="pa-3" size="5rem" />
+            <va-card-content>
+              <span class="va-h3">0</span> Servicios
+            </va-card-content>
+          </va-card>
+        </div>
+        <div class="flex flex-col va-text-center">
+          <va-card color="info">
+            <va-icon name="group"  class="pa-3"  size="5rem" />
+            <va-card-content>
+              <span class="va-h3">0</span> Cliente
+            </va-card-content>
+          </va-card>
+        </div>
+        <div class="flex flex-col va-text-center">
+          <va-card color="waring">
+            <va-icon name="engineering" class="pa-3"  size="5rem" />
+            <va-card-content>
+              <span class="va-h3">0</span> Proovedor
+            </va-card-content>
+          </va-card>
+        </div>
+        <div class="flex flex-col va-text-center">
+          <va-card color="success">
+            <va-icon name="add_home" class="pa-3"  size="5rem" />
+            <va-card-content>
+              <span class="va-h3">0</span> Productos
+            </va-card-content>
+          </va-card>
+        </div>
+        <div class="flex flex-col va-text-center">
+          <va-card color="danger">
+            <va-icon name="shopping_cart_checkout"  class="pa-3" size="5rem" />
+            <va-card-content>
+              <span class="va-h3">0</span> Compras
+            </va-card-content>
+          </va-card>
+        </div>
+      </div>
+    </div>
+    <!--
+    <div class="row flex">
+      <div class="flex flex-col md6">
+        <va-card stripe stripe-color="primary">
           <va-card-title>
-            <span class="va-h6">
-              Faro Capital Global Innovation FMIV
-            </span>
+            detalle del servicio
           </va-card-title>
-          <va-card-container>
-            <Line
-              class="pa-3"
-              id="my-chart-id"
-              :options="chartOptions"
-              :data="chartData"
-            />
-          </va-card-container>
+          <va-card-conten>
+
+          </va-card-conten>
+
         </va-card>
       </div>
 
-      <div class="flex md6 xs12">
-        <VaSkeletonGroup v-if="isLoading" animation="pulse" :delay="0">
-          <SkDashboard2/>
-        </VaSkeletonGroup>
-
-        <va-card v-else>
+      <div class="flex flex-col md6">
+        <va-card stripe stripe-color="primary">
           <va-card-title>
-            <span class="va-h6">
-              Faro Capital Deuda Global FMIV
-            </span>
+            Ultimos clientes
           </va-card-title>
-          <va-card-container>
-            <Line
-              class="pa-3"
-              id="my-chart-id"
-              :options="chartOptions"
-              :data="chartData"
-            />
-          </va-card-container>
+          <va-card-conten>
+            
+          </va-card-conten>
         </va-card>
       </div>
     </div>
- 
+    -->
+
 </div>
 </template>
 
 <script setup lang="ts">
   import { ref, onMounted } from 'vue'
-  import { Line } from 'vue-chartjs'
 
-  import SkDashboard1 from '../../../components/skeleton/sk.dashboard1.vue'
-  import SkDashboard2 from '../../../components/skeleton/sk.dashboard2.vue'
-  import popup from "@/components/popup/Popup.vue";
+  const step = ref(0)
 
-  import {
-    Chart as ChartJS,
-    Title,
-    Tooltip,
-    Legend,
-    LineElement,
-    LinearScale,
-    PointElement,
-    CategoryScale,
-    Filler,
-  } from 'chart.js'
-
-  ChartJS.register(Title, Tooltip, Legend, LineElement, LinearScale, PointElement, CategoryScale, Filler)
-
+  const steps = [
+    { label: 'Cliente', icon: 'store' },
+    { label: 'Proveedor', icon: 'store' },
+    { label: 'Vehiculos', icon: 'store' },
+    { label: 'Productos', icon: 'store' },
+    { label: 'Compras', icon: 'store' },
+  ]
 
   const isLoading = ref(true)
 
@@ -188,30 +114,7 @@
     load()
   })
 
-  const chartData = ref({
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-    datasets: [
-      {
-        label: 'Data One',
-        /*backgroundColor: '#f87979',*/
-        data: [40, 39, 10, 40, 39, 80, 40],
-        fill: false,
-        borderColor: 'rgb(75, 192, 192)',
-        tension: 0.3,
 
-      }
-    ]
-  })
-
-  const chartOptions= {
-    responsive: true,
-    maintainAspectRatio: false
-  }
-  const dashboardMap = ref()
-
-  function addAddressToMap({ city, country }: { city: { text: string }; country: string }) {
-    dashboardMap.value.addAddress({ city: city.text, country })
-  }
 </script>
 
 <style lang="scss">

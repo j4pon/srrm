@@ -5,17 +5,12 @@
             {{route.name}}
         </span>
     </div>
-    <div class="pb-2">
+    <div class="pb-4">
         <span class="va-h4">
         ¡Hola, {{getNameUser}}!
         </span>
     </div>
-    <div class="pb-4">
-        <span class="va-h6">
-        ¡Estás cada vez más cerca de tus metas!
-        </span>
-        
-    </div>
+
     </div>
 </template>
 
